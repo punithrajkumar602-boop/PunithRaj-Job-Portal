@@ -125,3 +125,6 @@ Repository: https://github.com/punithrajkumar602-boop/PunithRaj-Job-Portal
 The live app, database schema, OpenAPI specification, Postman collection and source ZIP are ready to review. The source ZIP is available at https://punithraj-job-portal.punithrajkumar602.workers.dev/docs/Job-portal-File.zip. The assessment form still requires the applicant's resume and authenticated Google Forms submission.
 
 Verified: seven unit tests, TypeScript checks and compiled-worker integration tests pass. The original deployment’s admin login and Remotive import were verified (17 jobs added, zero duplicates, zero errors). The current Cloudflare deployment has a separate database; verify its aggregation results separately.
+
+
+Current Cloudflare live verification results and remaining testing limits: [Verification report](docs/VERIFICATION.md).
