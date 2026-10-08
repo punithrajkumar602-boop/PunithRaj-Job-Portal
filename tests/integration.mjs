@@ -20,6 +20,7 @@ export async function suite(fetcher = fetch) {
     return { data, response: r };
   }
   const nonce = Date.now();
+  const title = `Integration Engineer ${nonce}`;
   const emp = await request(
     "auth/register",
     "POST",
@@ -86,7 +87,7 @@ export async function suite(fetcher = fetch) {
   assert.ok(login.response.headers.get("set-cookie").includes("HttpOnly"));
   await request("auth/me", "GET", undefined, ct + "tampered");
   const j = {
-    title: "Integration Engineer",
+    title,
     location: "Bengaluru",
     work_mode: "Remote",
     employment_type: "Full-time",
@@ -104,7 +105,7 @@ export async function suite(fetcher = fetch) {
   const id = created.data.job.id;
   await request("jobs/" + id, "PUT", j, outsider.data.token, 403);
   const searched = await request(
-    "jobs?q=Integration%20Engineer&mode=Remote&limit=1",
+    `jobs?q=${encodeURIComponent(title)}&mode=Remote&limit=1`,
   );
   assert.equal(searched.data.jobs.length, 1);
   assert.equal(searched.data.pagination.total, 1);
@@ -136,7 +137,7 @@ export async function suite(fetcher = fetch) {
   await request("scrape/jobs", "POST", {}, et, 403);
   await request("jobs/" + id, "PUT", { ...j, status: "closed" }, et);
   assert.equal(
-    (await request("jobs?q=Integration%20Engineer")).data.pagination.total,
+    (await request(`jobs?q=${encodeURIComponent(title)}`)).data.pagination.total,
     0,
   );
   await request("jobs/" + id + "/apply", "POST", {}, ct, 409);
