@@ -4,7 +4,7 @@ A full stack job portal with candidate and employer accounts, JWT authentication
 
 ## Live app
 
-https://talentlane-jobs.punithrajkumar602.chatgpt.site
+https://punithraj-job-portal.punithrajkumar602.workers.dev
 
 ## Stack and deployment tradeoff
 
@@ -38,6 +38,8 @@ Node.js 22.13+ is required. The starter supports pnpm; use the committed lockfil
 corepack enable
 pnpm install --frozen-lockfile
 ```
+
+For standalone Cloudflare deployment, follow `CLOUDFLARE-DEPLOY.md` and use the deployment preparation script. The following local setup describes the original managed development environment.
 
 1. Copy `config/env.example` to `.env.local`, set a strong admin password, and ensure the D1 `DB` binding is configured in `.openai/hosting.json`. Runtime secrets are never placed in the hosting manifest.
 2. Start `pnpm dev`. In the managed preview environment, use `sites-preview start "$PWD"` instead.
@@ -120,6 +122,6 @@ The implementation attributes Remotive and links to the original listing, avoids
 
 Repository: https://github.com/punithrajkumar602-boop/PunithRaj-Job-Portal
 
-The live app, database schema, OpenAPI specification, Postman collection and source ZIP are ready to review. The source ZIP is available at https://talentlane-jobs.punithrajkumar602.chatgpt.site/docs/Job-portal-File.zip. The assessment form still requires the applicant's resume and authenticated Google Forms submission.
+The live app, database schema, OpenAPI specification, Postman collection and source ZIP are ready to review. The source ZIP is available at https://punithraj-job-portal.punithrajkumar602.workers.dev/docs/Job-portal-File.zip. The assessment form still requires the applicant's resume and authenticated Google Forms submission.
 
-Verified: seven unit tests, TypeScript checks and compiled-worker integration tests pass. The live admin login was verified. A production Remotive import added 17 jobs with zero duplicates and no errors.
+Verified: seven unit tests, TypeScript checks and compiled-worker integration tests pass. The original deployment’s admin login and Remotive import were verified (17 jobs added, zero duplicates, zero errors). The current Cloudflare deployment has a separate database; verify its aggregation results separately.
